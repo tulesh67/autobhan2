@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { BRAND } from '../data'
 
 const LINKS = [
@@ -15,7 +14,6 @@ const LINKS = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 40)
@@ -24,66 +22,45 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', on)
   }, [])
 
+  const links = (mobile = false) => LINKS.map(([label, href]) => (
+    <li key={href}>
+      <a
+        href={href}
+        className={mobile
+          ? 'inline-flex min-h-8 items-center whitespace-nowrap py-1 text-[11px] font-semibold uppercase tracking-[0.11em] text-slate-700 transition hover:text-racing sm:text-xs'
+          : 'group relative whitespace-nowrap py-2 text-xs font-medium uppercase tracking-wider text-slate-700 transition hover:text-racing xl:text-sm xl:tracking-widest'}
+      >
+        {label}
+        {!mobile && <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-racing transition-transform duration-300 group-hover:scale-x-100" />}
+      </a>
+    </li>
+  ))
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled || open ? 'glass bg-obsidian/80 border-x-0 border-t-0' : ''}`}
+      className={`fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-xl transition-shadow duration-300 ${scrolled ? 'shadow-md shadow-slate-900/10' : 'shadow-sm shadow-slate-900/5'}`}
     >
-      <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8" aria-label="Main">
-        <a href="#top" className="flex items-center gap-2 font-display text-2xl font-bold tracking-[0.12em]" onClick={() => setOpen(false)}>
-          <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 27L16 4l13 23h-8l-5-9-5 9z" fill="#FF5A1F" /></svg>
-          {BRAND}
-        </a>
+      <nav className="mx-auto max-w-7xl px-4 sm:px-8" aria-label="Main">
+        <div className="flex h-14 items-center justify-between gap-3 sm:h-[72px]">
+          <a href="#top" className="flex shrink-0 items-center gap-2 font-display text-xl font-bold tracking-[0.12em] text-slate-900 sm:text-2xl">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 27L16 4l13 23h-8l-5-9-5 9z" fill="#FF5A1F" /></svg>
+            {BRAND}
+          </a>
 
-        <ul className="hidden items-center gap-8 lg:flex">
-          {LINKS.map(([l, h]) => (
-            <li key={h}>
-              <a href={h} className="group relative py-2 text-sm font-medium uppercase tracking-widest text-slate-700 transition hover:text-slate-950">
-                {l}
-                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-racing transition-transform duration-300 group-hover:scale-x-100" />
-              </a>
-            </li>
-          ))}
-        </ul>
+          <ul className="hidden items-center gap-5 lg:flex xl:gap-7">
+            {links()}
+          </ul>
 
-        <div className="flex items-center gap-3">
-          <a href="#book" className="btn-primary hidden !min-h-[42px] !px-5 text-sm sm:inline-flex">Book a Service</a>
-          <button
-            className="grid h-11 w-11 place-items-center border border-slate-300 lg:hidden"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            onClick={() => setOpen((o) => !o)}
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <a href="#book" className="btn-primary hidden !min-h-[40px] !px-4 text-xs sm:inline-flex lg:!px-5 lg:text-sm">Book a Service</a>
         </div>
-      </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden lg:hidden"
-          >
-            <ul className="flex flex-col px-5 pb-6">
-              {LINKS.map(([l, h], i) => (
-                <motion.li key={h} initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.04 }}>
-                  <a href={h} onClick={() => setOpen(false)} className="block border-b border-slate-200 py-4 font-display text-2xl uppercase tracking-widest text-slate-900">
-                    {l}
-                  </a>
-                </motion.li>
-              ))}
-              <li className="pt-5">
-                <a href="#book" onClick={() => setOpen(false)} className="btn-primary w-full">Book a Service</a>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <ul className="no-scrollbar flex flex-wrap items-center justify-center gap-x-3 gap-y-0 border-t border-slate-200 px-1 py-1.5 lg:hidden">
+          {links(true)}
+        </ul>
+      </nav>
     </motion.header>
   )
 }

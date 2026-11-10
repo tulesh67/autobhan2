@@ -66,7 +66,7 @@ export default function Hero() {
       </motion.div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-obsidian to-transparent" />
 
-      <motion.div style={{ opacity: fade }} className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-between px-5 pb-24 pt-32 sm:px-8">
+      <motion.div style={{ opacity: fade }} className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-between px-4 pb-24 pt-40 sm:px-8 sm:pt-32">
         <motion.div style={{ y: textY }} className="max-w-4xl">
           <motion.p
             initial={{ opacity: 0, x: -20 }}
@@ -76,7 +76,7 @@ export default function Hero() {
           >
             <span className="h-px w-10 bg-racing" /> Precision Automotive Garage
           </motion.p>
-          <h1 className="font-display text-[clamp(2.6rem,7.5vw,6.5rem)] font-bold uppercase leading-[0.92] tracking-tight">
+          <h1 className="font-display text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold uppercase leading-[0.92] tracking-tight">
             <Words words={LINE1} start={0.35} />
             <Words words={LINE2} start={0.75} className="text-racing" />
           </h1>
@@ -94,8 +94,8 @@ export default function Hero() {
             transition={{ delay: 1.5, duration: 0.8 }}
             className="mt-9 flex flex-wrap gap-4"
           >
-            <a href="#showroom" className="btn-primary">Explore Our Garage <ArrowRight size={18} /></a>
-            <a href="#book" className="btn-ghost">Book a Service</a>
+            <a href="#showroom" className="btn-primary w-full sm:w-auto">Explore Our Garage <ArrowRight size={18} /></a>
+            <a href="#book" className="btn-ghost w-full sm:w-auto">Book a Service</a>
           </motion.div>
         </motion.div>
 
@@ -110,7 +110,7 @@ export default function Hero() {
               <img
                 src={`${import.meta.env.BASE_URL}cars/fortuner.jpg`}
                 alt="Toyota Fortuner in a studio"
-                className="mx-auto w-[130%] max-w-none -translate-x-[12%] rounded-xl border border-slate-200 object-cover shadow-[0_32px_80px_rgba(15,23,42,0.18)] sm:w-full sm:max-w-[920px] sm:translate-x-[8%] md:ml-auto md:mr-0 md:w-[78%] md:translate-x-0"
+                className="mx-auto w-full max-w-[640px] rounded-xl border border-slate-200 object-cover shadow-[0_24px_60px_rgba(15,23,42,0.16)] sm:max-w-[920px] sm:translate-x-[4%] md:ml-auto md:mr-0 md:w-[78%] md:translate-x-0"
               />
             </motion.div>
           </motion.div>

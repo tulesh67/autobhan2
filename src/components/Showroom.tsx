@@ -18,7 +18,7 @@ function Card({ v, onOpen }: { v: Vehicle; onOpen: () => void }) {
       whileHover="hover"
       className="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-xl hover:shadow-slate-900/10"
     >
-      <div className="relative h-52 overflow-hidden bg-gradient-to-b from-[#262930] to-charcoal">
+      <div className="relative h-48 overflow-hidden bg-gradient-to-b from-slate-100 to-white sm:h-52">
         <div className="grid-bg absolute inset-0 opacity-50" />
         <div className="absolute left-4 top-4 z-10 border border-slate-200 bg-white/90 px-3 py-1 font-display text-xs uppercase tracking-[0.25em] text-slate-600 backdrop-blur">
           {v.brand}
@@ -82,7 +82,7 @@ function Modal({ v, onClose, onBook }: { v: Vehicle; onClose: () => void; onBook
 
   return (
     <motion.div
-      className="fixed inset-0 z-[60] grid place-items-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[60] grid place-items-center overflow-y-auto bg-black/80 p-2 backdrop-blur-sm sm:p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -97,7 +97,7 @@ function Modal({ v, onClose, onBook }: { v: Vehicle; onClose: () => void; onBook
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 30, opacity: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="relative my-auto w-full max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-2xl"
+        className="relative my-auto max-h-[calc(100dvh-1rem)] w-full max-w-4xl overflow-y-auto rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-2xl sm:max-h-[calc(100dvh-2rem)]"
       >
         <button onClick={onClose} aria-label="Close" className="absolute right-3 top-3 z-20 grid h-11 w-11 place-items-center border border-slate-200 bg-white/90 hover:border-racing">
           <X size={20} />
@@ -111,7 +111,7 @@ function Modal({ v, onClose, onBook }: { v: Vehicle; onClose: () => void; onBook
               <img
                 src={v.image}
                 alt={`${v.brand} ${v.name}`}
-                className="w-full h-auto max-h-[380px] object-cover"
+                className="h-auto max-h-[220px] w-full object-cover sm:max-h-[380px]"
               />
             </div>
           ) : (
@@ -121,7 +121,7 @@ function Modal({ v, onClose, onBook }: { v: Vehicle; onClose: () => void; onBook
         <div className="grid gap-8 p-6 md:grid-cols-2 md:p-10">
           <div>
             <p className="text-slate-600">{v.blurb}</p>
-            <dl className="mt-6 grid grid-cols-3 gap-px bg-slate-200 text-center">
+            <dl className="mt-6 grid grid-cols-1 gap-px bg-slate-200 text-center min-[420px]:grid-cols-3">
               {[['Body', v.body], ['Power', v.power], ['Seats', v.seats]].map(([k, val]) => (
                 <div key={k} className="bg-charcoal p-4">
                   <dt className="font-display text-xs uppercase tracking-[0.25em] text-slate-500">{k}</dt>
@@ -167,19 +167,19 @@ export default function Showroom({ onBook }: Props) {
         title={<>Brands we <span className="text-racing">service</span></>}
         sub="Pick your make to see the models our workshop is set up to look after."
       />
-      <div className="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filter by brand">
+      <div className="no-scrollbar -mx-4 mb-8 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:mb-10 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0" role="group" aria-label="Filter by brand">
         {['All', ...BRANDS].map((b) => (
           <button
             key={b}
             onClick={() => setBrand(b)}
             aria-pressed={brand === b}
-            className={`min-h-[44px] rounded-full border px-5 font-display text-sm font-semibold uppercase tracking-[0.2em] transition ${brand === b ? 'border-racing bg-racing text-white' : 'border-slate-300 text-slate-600 hover:border-slate-500 hover:text-slate-900'}`}
+            className={`min-h-[44px] shrink-0 rounded-full border px-5 font-display text-sm font-semibold uppercase tracking-[0.2em] transition ${brand === b ? 'border-racing bg-racing text-white' : 'border-slate-300 text-slate-600 hover:border-slate-500 hover:text-slate-900'}`}
           >
             {b}
           </button>
         ))}
       </div>
-      <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div layout className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {list.map((v) => <Card key={v.id} v={v} onOpen={() => setActive(v)} />)}
         </AnimatePresence>
