@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        obsidian: '#101114',
-        charcoal: '#1B1D21',
+        obsidian: '#f7f8fa',
+        charcoal: '#ffffff',
         racing: '#FF5A1F',
-        silver: '#C4C8CF',
+        silver: '#64748b',
       },
       fontFamily: {
         display: ['"Barlow Condensed"', 'Impact', 'sans-serif'],

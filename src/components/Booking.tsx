@@ -42,7 +42,7 @@ function makeRef() {
 function Field({ label, error, children, id }: { label: string; error?: string; children: React.ReactNode; id: string }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block font-display text-xs font-semibold uppercase tracking-[0.25em] text-white/60">{label}</label>
+      <label htmlFor={id} className="mb-2 block font-display text-xs font-semibold uppercase tracking-[0.25em] text-slate-600">{label}</label>
       {children}
       {error && <p id={`${id}-err`} role="alert" className="mt-1.5 text-sm text-[#ff8a6b]">{error}</p>}
     </div>
@@ -110,11 +110,11 @@ export default function Booking({ prefill }: { prefill: Prefill }) {
                   <Check size={40} />
                 </motion.div>
                 <h3 className="mt-6 font-display text-4xl font-bold uppercase">Booking confirmed</h3>
-                <p className="mt-2 text-white/60">Keep your reference number handy.</p>
+                <p className="mt-2 text-slate-600">Keep your reference number handy.</p>
                 <p className="mx-auto mt-6 w-fit border border-racing/60 bg-racing/10 px-8 py-4 font-display text-3xl tracking-[0.2em]">{done.ref}</p>
-                <dl className="mx-auto mt-8 grid max-w-xl grid-cols-2 gap-px bg-white/10 text-left text-sm">
+                <dl className="mx-auto mt-8 grid max-w-xl grid-cols-2 gap-px bg-slate-200 text-left text-sm">
                   {[['Name', done.name], ['Mobile', done.mobile], ['Vehicle', `${done.brand} ${done.model}`], ['Registration', done.reg], ['Service', done.service], ['Date', done.date]].map(([k, v]) => (
-                    <div key={k} className="bg-charcoal p-3"><dt className="text-xs uppercase tracking-widest text-white/45">{k}</dt><dd className="mt-0.5 break-words">{v}</dd></div>
+                    <div key={k} className="bg-white p-3"><dt className="text-xs uppercase tracking-widest text-slate-500">{k}</dt><dd className="mt-0.5 break-words">{v}</dd></div>
                   ))}
                 </dl>
                 <button onClick={() => setDone(null)} className="btn-ghost mt-8">Book another service</button>
@@ -135,8 +135,8 @@ export default function Booking({ prefill }: { prefill: Prefill }) {
                 </Field>
                 <Field id="f-brand" label="Vehicle Brand" error={errors.brand}>
                   <select id="f-brand" className={cls('brand')} value={f.brand} onChange={(e) => { set('brand', e.target.value); set('model', '') }} {...aria('brand')}>
-                    <option value="" className="bg-charcoal">Select brand</option>
-                    {[...BRANDS, 'Other'].map((b) => <option key={b} value={b} className="bg-charcoal">{b}</option>)}
+                    <option value="" className="bg-white">Select brand</option>
+                    {[...BRANDS, 'Other'].map((b) => <option key={b} value={b} className="bg-white">{b}</option>)}
                   </select>
                 </Field>
                 <Field id="f-model" label="Vehicle Model" error={errors.model}>
@@ -145,16 +145,16 @@ export default function Booking({ prefill }: { prefill: Prefill }) {
                 </Field>
                 <Field id="f-service" label="Service" error={errors.service}>
                   <select id="f-service" className={cls('service')} value={f.service} onChange={(e) => set('service', e.target.value)} {...aria('service')}>
-                    <option value="" className="bg-charcoal">Select service</option>
-                    {SERVICES.map((s) => <option key={s.title} value={s.title} className="bg-charcoal">{s.title}</option>)}
+                    <option value="" className="bg-white">Select service</option>
+                    {SERVICES.map((s) => <option key={s.title} value={s.title} className="bg-white">{s.title}</option>)}
                   </select>
                 </Field>
                 <Field id="f-date" label="Preferred Date" error={errors.date}>
-                  <input id="f-date" type="date" min={today()} className={`${cls('date')} [color-scheme:dark]`} value={f.date} onChange={(e) => set('date', e.target.value)} {...aria('date')} />
+                  <input id="f-date" type="date" min={today()} className={`${cls('date')} [color-scheme:light]`} value={f.date} onChange={(e) => set('date', e.target.value)} {...aria('date')} />
                 </Field>
                 <div className="sm:col-span-2">
                   <button type="submit" className="btn-primary w-full sm:w-auto"><CalendarCheck size={18} /> Confirm Booking</button>
-                  {count > 0 && <p className="mt-3 text-xs text-white/40">{count} booking{count === 1 ? '' : 's'} saved in this browser.</p>}
+                  {count > 0 && <p className="mt-3 text-xs text-slate-500">{count} booking{count === 1 ? '' : 's'} saved in this browser.</p>}
                 </div>
               </motion.form>
             )}

@@ -24,7 +24,7 @@ export function SectionHead({ kicker, title, sub, align = 'left' }: { kicker: st
         <span className="h-px w-10 bg-racing" /> {kicker}
       </p>
       <h2 className="h2">{title}</h2>
-      {sub && <p className="mt-5 text-lg text-white/65">{sub}</p>}
+      {sub && <p className="mt-5 text-lg text-slate-600">{sub}</p>}
     </Reveal>
   )
 }

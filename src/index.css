@@ -2,25 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-body { @apply bg-obsidian text-white font-sans antialiased; overflow-x: hidden; }
+html { color-scheme: light; scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { @apply bg-obsidian text-slate-900 font-sans antialiased; overflow-x: hidden; }
 ::selection { background: #FF5A1F; color: #fff; }
 
 @layer components {
-  .glass { @apply bg-white/[0.04] backdrop-blur-xl border border-white/10; }
+  .glass { @apply border border-slate-200 bg-white/85 shadow-[0_12px_40px_rgba(15,23,42,0.06)] backdrop-blur-xl; }
   .section { @apply relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-24 md:py-32; }
   .kicker { @apply font-display text-sm font-semibold uppercase tracking-[0.3em] text-racing; }
   .h2 { @apply font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase leading-[0.95] tracking-tight; }
-  .btn { @apply inline-flex min-h-[48px] items-center justify-center gap-2 px-7 font-display text-base font-semibold uppercase tracking-[0.14em] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white; }
+  .btn { @apply inline-flex min-h-[48px] items-center justify-center gap-2 px-7 font-display text-base font-semibold uppercase tracking-[0.14em] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900; }
   .btn-primary { @apply btn bg-racing text-white hover:bg-[#ff7440] hover:shadow-[0_0_32px_rgba(255,90,31,0.55)] active:scale-[0.97]; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); }
-  .btn-ghost { @apply btn glass text-white hover:bg-white/10 hover:border-racing/60 active:scale-[0.97]; }
-  .field { @apply w-full min-h-[48px] bg-white/[0.05] border border-white/15 px-4 text-white placeholder:text-white/40 outline-none transition focus:border-racing focus:bg-white/[0.08]; }
+  .btn-ghost { @apply btn glass text-slate-900 hover:bg-slate-50 hover:border-racing/60 active:scale-[0.97]; }
+  .field { @apply w-full min-h-[48px] border border-slate-300 bg-white px-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-racing focus:bg-white; }
 }
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(15,23,42,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.045) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 

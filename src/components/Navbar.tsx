@@ -40,7 +40,7 @@ export default function Navbar() {
         <ul className="hidden items-center gap-8 lg:flex">
           {LINKS.map(([l, h]) => (
             <li key={h}>
-              <a href={h} className="group relative py-2 text-sm font-medium uppercase tracking-widest text-white/75 transition hover:text-white">
+              <a href={h} className="group relative py-2 text-sm font-medium uppercase tracking-widest text-slate-700 transition hover:text-slate-950">
                 {l}
                 <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-racing transition-transform duration-300 group-hover:scale-x-100" />
               </a>
@@ -51,7 +51,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <a href="#book" className="btn-primary hidden !min-h-[42px] !px-5 text-sm sm:inline-flex">Book a Service</a>
           <button
-            className="grid h-11 w-11 place-items-center border border-white/15 lg:hidden"
+            className="grid h-11 w-11 place-items-center border border-slate-300 lg:hidden"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}
@@ -72,7 +72,7 @@ export default function Navbar() {
             <ul className="flex flex-col px-5 pb-6">
               {LINKS.map(([l, h], i) => (
                 <motion.li key={h} initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.04 }}>
-                  <a href={h} onClick={() => setOpen(false)} className="block border-b border-white/10 py-4 font-display text-2xl uppercase tracking-widest">
+                  <a href={h} onClick={() => setOpen(false)} className="block border-b border-slate-200 py-4 font-display text-2xl uppercase tracking-widest text-slate-900">
                     {l}
                   </a>
                 </motion.li>

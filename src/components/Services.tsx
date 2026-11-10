@@ -16,7 +16,7 @@ export default function Services({ onBook }: { onBook: (p: { service: string }) 
                 whileHover="hover"
                 whileTap={{ scale: 0.98 }}
                 aria-label={`Book ${title}`}
-                className="group relative flex h-full min-h-[260px] w-full flex-col justify-between overflow-hidden border border-white/10 bg-obsidian p-6 text-left"
+                className="group relative flex h-full min-h-[260px] w-full flex-col justify-between overflow-hidden rounded-xl border border-slate-200 bg-white p-6 text-left shadow-sm transition-shadow hover:shadow-xl hover:shadow-slate-900/10"
               >
                 <motion.div
                   aria-hidden="true"
@@ -28,13 +28,13 @@ export default function Services({ onBook }: { onBook: (p: { service: string }) 
                   <Icon size={190} strokeWidth={1} />
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-br from-racing/0 to-racing/0 transition-all duration-500 group-hover:from-racing/15" />
-                <span className="relative grid h-14 w-14 place-items-center border border-white/15 bg-white/[0.04] transition group-hover:border-racing group-hover:bg-racing" style={{ color: tone }}>
+                <span className="relative grid h-14 w-14 place-items-center border border-slate-200 bg-slate-50 transition group-hover:border-racing group-hover:bg-racing" style={{ color: tone }}>
                   <Icon size={26} className="transition group-hover:text-white" />
                 </span>
                 <div className="relative mt-10">
                   <h3 className="font-display text-2xl font-bold uppercase tracking-wide">{title}</h3>
-                  <p className="mt-2 text-sm text-white/60">{desc}</p>
-                  <span className="mt-4 flex items-center gap-1 font-display text-xs uppercase tracking-[0.25em] text-white/40 transition group-hover:text-racing">
+                  <p className="mt-2 text-sm text-slate-600">{desc}</p>
+                  <span className="mt-4 flex items-center gap-1 font-display text-xs uppercase tracking-[0.25em] text-slate-500 transition group-hover:text-racing">
                     Book <ArrowUpRight size={14} />
                   </span>
                 </div>

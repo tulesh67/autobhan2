@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight, ChevronDown } from 'lucide-react'
-import Suv from './Suv'
 import { BRANDS } from '../data'
 import { EASE } from './Reveal'
 
@@ -30,7 +29,6 @@ function Words({ words, start, className = '' }: { words: string[]; start: numbe
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
   const reduce = useReducedMotion()
-  const [lights, setLights] = useState(false)
 
   const mx = useMotionValue(0)
   const my = useMotionValue(0)
@@ -47,11 +45,6 @@ export default function Hero() {
   const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0])
   const textY = useTransform(scrollYProgress, [0, 1], [0, -80])
 
-  useEffect(() => {
-    const t = setTimeout(() => setLights(true), reduce ? 0 : 1500)
-    return () => clearTimeout(t)
-  }, [reduce])
-
   const onMove = (e: React.MouseEvent<HTMLElement>) => {
     if (reduce) return
     const r = e.currentTarget.getBoundingClientRect()
@@ -67,7 +60,7 @@ export default function Hero() {
       <motion.div
         style={{ x: bgX }}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-[38%] select-none text-center font-display text-[20vw] font-extrabold leading-none tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.07)]"
+        className="pointer-events-none absolute inset-x-0 top-[38%] select-none text-center font-display text-[20vw] font-extrabold leading-none tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(15,23,42,0.07)]"
       >
         AUTOBHAN
       </motion.div>
@@ -91,7 +84,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.3, duration: 0.8 }}
-            className="mt-6 max-w-xl text-lg text-white/70"
+            className="mt-6 max-w-xl text-lg text-slate-600"
           >
             Precision automotive care. Advanced diagnostics. Professional vehicle restoration.
           </motion.p>
@@ -114,11 +107,10 @@ export default function Hero() {
             transition={{ duration: 1.5, delay: 0.3, ease: EASE }}
           >
             <motion.div style={{ rotateY: rotY, rotateX: rotX, x: carX, y: scrollY, transformStyle: 'preserve-3d' }}>
-              <Suv
-                body="#d9dce1"
-                lights={lights}
-                spin
-                className="mx-auto w-[130%] max-w-none -translate-x-[12%] sm:w-full sm:max-w-[920px] sm:translate-x-[8%] md:ml-auto md:mr-0 md:w-[78%] md:translate-x-0"
+              <img
+                src={`${import.meta.env.BASE_URL}cars/fortuner.jpg`}
+                alt="Toyota Fortuner in a studio"
+                className="mx-auto w-[130%] max-w-none -translate-x-[12%] rounded-xl border border-slate-200 object-cover shadow-[0_32px_80px_rgba(15,23,42,0.18)] sm:w-full sm:max-w-[920px] sm:translate-x-[8%] md:ml-auto md:mr-0 md:w-[78%] md:translate-x-0"
               />
             </motion.div>
           </motion.div>
@@ -127,11 +119,11 @@ export default function Hero() {
 
       {/* Scroll cue + brand ticker */}
       <div className="absolute inset-x-0 bottom-0 z-10">
-        <a href="#showroom" aria-label="Scroll to showroom" className="mx-auto mb-3 flex w-fit flex-col items-center text-white/50 hover:text-racing">
+        <a href="#showroom" aria-label="Scroll to showroom" className="mx-auto mb-3 flex w-fit flex-col items-center text-slate-500 hover:text-racing">
           <ChevronDown size={22} className="animate-bounce" />
         </a>
-        <div className="overflow-hidden border-t border-white/10 bg-obsidian/70 py-3 backdrop-blur">
-          <div className="marquee flex w-max gap-12 whitespace-nowrap font-display text-lg uppercase tracking-[0.35em] text-white/45">
+        <div className="overflow-hidden border-t border-slate-200 bg-obsidian/85 py-3 backdrop-blur">
+          <div className="marquee flex w-max gap-12 whitespace-nowrap font-display text-lg uppercase tracking-[0.35em] text-slate-500">
             {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((b, i) => (
               <span key={i} className="flex items-center gap-12">{b}<span className="h-1.5 w-1.5 bg-racing" /></span>
             ))}

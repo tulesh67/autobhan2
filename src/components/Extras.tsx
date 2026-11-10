@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { BadgeCheck, CalendarDays, ClipboardCheck, Clock, Gauge, KeyRound, Mail, MapPin, Phone, ScanSearch, Star, Zap } from 'lucide-react'
-import Suv from './Suv'
 import { Reveal, SectionHead } from './Reveal'
 import { BRAND, BRANDS } from '../data'
 
@@ -18,13 +17,13 @@ export function Why() {
   return (
     <section id="why" className="section">
       <SectionHead kicker="Why Choose Us" title={<>Built on <span className="text-racing">precision</span></>} />
-      <div className="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-px bg-slate-200 sm:grid-cols-2 lg:grid-cols-3">
         {WHY.map(({ Icon, t, d }, i) => (
           <Reveal key={t} delay={(i % 3) * 0.08} className="h-full">
-            <div className="group h-full bg-obsidian p-8 transition hover:bg-charcoal">
+            <div className="group h-full bg-white p-8 transition hover:bg-slate-50">
               <Icon size={32} className="text-racing transition group-hover:scale-110" />
               <h3 className="mt-6 font-display text-2xl font-bold uppercase tracking-wide">{t}</h3>
-              <p className="mt-2 text-white/60">{d}</p>
+              <p className="mt-2 text-slate-600">{d}</p>
             </div>
           </Reveal>
         ))}
@@ -34,26 +33,31 @@ export function Why() {
 }
 
 const TILES = [
-  { c: '#e9eaed', cap: 'Workshop bay', span: 'md:col-span-2 md:row-span-2', bg: 'from-[#2b2e36] to-obsidian' },
-  { c: '#c8553a', cap: 'Detailing', span: '', bg: 'from-[#3a2018] to-obsidian' },
-  { c: '#7f8a99', cap: 'EV diagnostics', span: '', bg: 'from-[#1d2733] to-obsidian' },
-  { c: '#2b2f36', cap: 'Paint finish', span: '', bg: 'from-[#2a2a2e] to-obsidian' },
-  { c: '#d8d4cc', cap: 'Final inspection', span: 'md:col-span-2', bg: 'from-[#2c2a25] to-obsidian' },
+  { image: 'fortuner.jpg', alt: 'Toyota Fortuner', cap: 'Toyota Fortuner', span: 'md:col-span-2 md:row-span-2' },
+  { image: 'thar-roxx.jpg', alt: 'Mahindra Thar Roxx', cap: 'Mahindra Thar Roxx', span: '' },
+  { image: 'xev-9e.jpg', alt: 'Mahindra XEV 9e electric SUV', cap: 'Electric SUV care', span: '' },
+  { image: 'harrier-ev.jpg', alt: 'Tata Harrier EV', cap: 'Tata Harrier EV', span: '' },
+  { image: 'scorpio-n.jpg', alt: 'Mahindra Scorpio N', cap: 'Mahindra Scorpio N', span: 'md:col-span-2' },
 ]
 
-function Tile({ c, cap, span, bg }: (typeof TILES)[number]) {
+function Tile({ image, alt, cap, span }: (typeof TILES)[number]) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], [-24, 24])
   return (
-    <div ref={ref} className={`group relative min-h-[220px] overflow-hidden border border-white/10 bg-gradient-to-br ${bg} ${span}`}>
-      <div className="grid-bg absolute inset-0 opacity-40" />
-      <motion.div style={{ y }} className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-6 transition duration-700 group-hover:scale-105">
-        <Suv body={c} lights className="mx-auto w-full max-w-md" />
+    <div ref={ref} className={`group relative min-h-[220px] overflow-hidden rounded-xl border border-slate-200 bg-slate-100 ${span}`}>
+      <motion.div style={{ y }} className="absolute inset-0">
+        <img
+          src={`${import.meta.env.BASE_URL}cars/${image}`}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full scale-105 object-cover transition duration-700 group-hover:scale-110"
+        />
       </motion.div>
-      <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-obsidian to-transparent p-4">
+      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent p-5 pt-16 text-white">
         <span className="font-display text-lg uppercase tracking-widest">{cap}</span>
-        <span className="text-[10px] uppercase tracking-widest text-white/40">Placeholder</span>
+        <span className="text-[10px] uppercase tracking-widest text-white/75">Showroom</span>
       </div>
     </div>
   )
@@ -62,7 +66,7 @@ function Tile({ c, cap, span, bg }: (typeof TILES)[number]) {
 export function Gallery() {
   return (
     <section id="gallery" className="section">
-      <SectionHead kicker="Garage Gallery" title={<>Inside the <span className="text-racing">workshop</span></>} sub="Placeholder visuals. Swap in photos of your own workshop and finished work." />
+      <SectionHead kicker="Garage Gallery" title={<>Cars we <span className="text-racing">care for</span></>} sub="Browse a selection from the vehicles our multi-brand workshop is set up to service." />
       <div className="grid auto-rows-[220px] gap-4 md:grid-cols-4">
         {TILES.map((t) => <Reveal key={t.cap} className={`${t.span} h-full`}><Tile {...t} /></Reveal>)}
       </div>
@@ -83,7 +87,7 @@ export function How() {
       <div className="section">
         <SectionHead kicker="How It Works" title={<>Four steps to <span className="text-racing">done</span></>} />
         <ol className="relative grid gap-10 md:grid-cols-4">
-          <div className="absolute left-0 right-0 top-8 hidden h-px bg-gradient-to-r from-racing via-white/20 to-transparent md:block" />
+          <div className="absolute left-0 right-0 top-8 hidden h-px bg-gradient-to-r from-racing via-slate-200 to-transparent md:block" />
           {STEPS.map(({ Icon, t, d }, i) => (
             <li key={t}>
               <Reveal delay={i * 0.12}>
@@ -91,7 +95,7 @@ export function How() {
                   <span className="absolute -right-3 -top-3 grid h-7 w-7 place-items-center bg-racing font-display text-sm text-white">{i + 1}</span>
                 </div>
                 <h3 className="mt-6 font-display text-2xl font-bold uppercase tracking-wide">{t}</h3>
-                <p className="mt-2 text-white/60">{d}</p>
+                <p className="mt-2 text-slate-600">{d}</p>
               </Reveal>
             </li>
           ))}
@@ -117,8 +121,8 @@ export function Reviews() {
           <Reveal key={r.n} delay={i * 0.1} className="h-full">
             <figure className="glass h-full p-7 transition hover:-translate-y-1 hover:border-racing/50">
               <div className="flex gap-1 text-racing" aria-label="5 out of 5 stars (demo)">{[0, 1, 2, 3, 4].map((s) => <Star key={s} size={16} fill="currentColor" />)}</div>
-              <blockquote className="mt-4 text-white/80">“{r.t}”</blockquote>
-              <figcaption className="mt-6 border-t border-white/10 pt-4 text-sm"><span className="font-semibold">{r.n}</span><span className="text-white/50"> · {r.v}</span></figcaption>
+              <blockquote className="mt-4 text-slate-700">“{r.t}”</blockquote>
+              <figcaption className="mt-6 border-t border-slate-200 pt-4 text-sm"><span className="font-semibold">{r.n}</span><span className="text-slate-500"> · {r.v}</span></figcaption>
             </figure>
           </Reveal>
         ))}
@@ -144,15 +148,15 @@ export function Contact() {
             <Reveal key={k}>
               <div className="glass h-full p-6">
                 <Icon size={24} className="text-racing" />
-                <p className="mt-4 font-display text-xs uppercase tracking-[0.25em] text-white/50">{k}</p>
+                <p className="mt-4 font-display text-xs uppercase tracking-[0.25em] text-slate-500">{k}</p>
                 <p className="mt-1 font-medium">{v}</p>
               </div>
             </Reveal>
           ))}
         </div>
         <Reveal>
-          <div className="grid-bg relative grid min-h-[280px] place-items-center border border-white/10 bg-charcoal text-center">
-            <div><MapPin size={36} className="mx-auto text-racing" /><p className="mt-3 font-display text-xl uppercase tracking-widest">Map placeholder</p><p className="text-sm text-white/45">Embed your map here</p></div>
+          <div className="grid-bg relative grid min-h-[280px] place-items-center rounded-xl border border-slate-200 bg-white text-center">
+            <div><MapPin size={36} className="mx-auto text-racing" /><p className="mt-3 font-display text-xl uppercase tracking-widest">Map placeholder</p><p className="text-sm text-slate-500">Embed your map here</p></div>
           </div>
         </Reveal>
       </div>
@@ -162,9 +166,9 @@ export function Contact() {
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-charcoal/60">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-5 py-10 text-sm text-white/50 sm:px-8 md:flex-row">
-        <a href="#top" className="font-display text-xl font-bold tracking-[0.12em] text-white">{BRAND}</a>
+    <footer className="border-t border-slate-200 bg-white">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-5 py-10 text-sm text-slate-500 sm:px-8 md:flex-row">
+        <a href="#top" className="font-display text-xl font-bold tracking-[0.12em] text-slate-900">{BRAND}</a>
         <nav aria-label="Footer" className="flex flex-wrap justify-center gap-6">
           {[['Showroom', '#showroom'], ['Services', '#services'], ['Book', '#book'], ['Contact', '#contact']].map(([l, h]) => <a key={h} href={h} className="hover:text-racing">{l}</a>)}
         </nav>
