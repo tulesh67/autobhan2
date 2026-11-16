@@ -51,7 +51,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
         onClick={(event) => handleNavClick(event, link.href)}
         className={
           compact
-            ? 'flex min-h-8 items-center justify-center rounded-md px-1 font-display text-[10px] font-extrabold uppercase tracking-wide text-slate-800 transition hover:bg-slate-100 hover:text-racing active:bg-slate-100 sm:min-h-9 sm:px-3 sm:text-xs'
+            ? 'flex min-h-8 items-center justify-center whitespace-nowrap rounded-md px-0.5 font-display text-[8px] font-extrabold uppercase tracking-tight text-slate-800 transition hover:bg-slate-100 hover:text-racing active:bg-slate-100 sm:min-h-9 sm:px-3 sm:text-xs'
             : 'relative whitespace-nowrap py-1 font-display text-sm font-extrabold uppercase tracking-wider text-slate-800 transition hover:text-racing xl:text-[15px]'
         }
       >
@@ -93,7 +93,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
             {navigationLinks()}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="hidden shrink-0 items-center gap-1.5 sm:flex sm:gap-2">
             <button
               type="button"
               onClick={onRequestTowing}
@@ -156,40 +156,34 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
 
         <nav
           aria-label="Primary navigation"
-          className="grid grid-cols-3 gap-x-1 gap-y-0.5 border-t border-slate-100 px-2 py-1 sm:flex sm:flex-nowrap sm:justify-center sm:gap-1 lg:hidden"
+          className="grid grid-cols-6 items-center gap-0 border-t border-slate-100 px-1 py-1 sm:flex sm:flex-nowrap sm:justify-center sm:gap-1 lg:hidden"
         >
           {navigationLinks(true)}
         </nav>
+
+        <nav
+          aria-label="Quick actions"
+          className="grid grid-cols-5 gap-1 border-t border-slate-100 px-1.5 py-1 sm:hidden"
+        >
+          <button type="button" onClick={onRequestTowing} aria-label="Request towing" className="flex h-10 min-w-0 items-center justify-center gap-1 rounded-lg bg-red-600 px-0.5 text-white active:bg-red-700">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-white" /><span className="whitespace-nowrap text-[8px] font-black uppercase">Towing</span>
+          </button>
+          <a href={CONTACT_INFO.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open map" className="flex h-10 min-w-0 items-center justify-center gap-1 rounded-lg border border-slate-300 bg-slate-50 px-0.5 text-slate-800 active:bg-slate-100">
+            <MapPin size={13} className="shrink-0 text-racing" /><span className="whitespace-nowrap text-[8px] font-black uppercase">Map</span>
+          </a>
+          <a href="#book" onClick={(event) => handleNavClick(event, '#book')} aria-label="Book service" className="flex h-10 min-w-0 items-center justify-center gap-1 rounded-lg bg-racing px-0.5 text-white active:bg-orange-600">
+            <Wrench size={13} className="shrink-0" /><span className="whitespace-nowrap text-[8px] font-black uppercase">Book</span>
+          </a>
+          <a href={CONTACT_INFO.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" className="flex h-10 min-w-0 items-center justify-center gap-1 rounded-lg bg-[#25D366] px-0.5 text-white active:bg-[#20ba59]">
+            <MessageCircle size={13} className="shrink-0" /><span className="whitespace-nowrap text-[8px] font-black uppercase">WhatsApp</span>
+          </a>
+          <a href={`tel:${CONTACT_INFO.phone}`} aria-label={`Call ${CONTACT_INFO.phone}`} className="flex h-10 min-w-0 items-center justify-center gap-1 rounded-lg bg-slate-900 px-0.5 text-white active:bg-slate-800">
+            <PhoneCall size={13} className="shrink-0" /><span className="whitespace-nowrap text-[8px] font-black uppercase">Call</span>
+          </a>
+        </nav>
       </header>
 
-      {/* Persistent quick actions on phones, matching the desktop contact bar. */}
-      <nav
-        aria-label="Quick actions"
-        className="fixed inset-x-0 bottom-0 z-[60] grid grid-cols-5 gap-1 border-t border-slate-200 bg-white/95 px-1.5 pt-1.5 pb-[calc(0.375rem+env(safe-area-inset-bottom))] shadow-[0_-4px_16px_rgba(15,23,42,0.12)] backdrop-blur-md sm:hidden"
-      >
-        <button
-          type="button"
-          onClick={onRequestTowing}
-          aria-label="Request towing"
-          className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg bg-red-600 px-0.5 text-white active:bg-red-700"
-        >
-          <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-white" /><span className="text-[9px] font-black uppercase">Towing</span></span>
-        </button>
-        <a href={CONTACT_INFO.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open map" className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg border border-slate-300 bg-slate-50 text-slate-800 active:bg-slate-100">
-          <MapPin size={14} className="text-racing" /><span className="text-[9px] font-black uppercase">Map</span>
-        </a>
-        <a href="#book" onClick={(event) => handleNavClick(event, '#book')} aria-label="Book service" className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg bg-racing text-white active:bg-orange-600">
-          <Wrench size={14} /><span className="text-[9px] font-black uppercase">Book</span>
-        </a>
-        <a href={CONTACT_INFO.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg bg-[#25D366] text-white active:bg-[#20ba59]">
-          <MessageCircle size={14} /><span className="text-[9px] font-black uppercase">WhatsApp</span>
-        </a>
-        <a href={`tel:${CONTACT_INFO.phone}`} aria-label={`Call ${CONTACT_INFO.phone}`} className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg bg-slate-900 text-white active:bg-slate-800">
-          <PhoneCall size={14} /><span className="text-[9px] font-black uppercase">Call</span>
-        </a>
-      </nav>
-
-      <div className="h-[116px] w-full shrink-0 sm:h-[112px] lg:h-[82px]" aria-hidden="true" />
+      <div className="h-[136px] w-full shrink-0 sm:h-[112px] lg:h-[82px]" aria-hidden="true" />
     </>
   )
 }
