@@ -162,6 +162,33 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
         </nav>
       </header>
 
+      {/* Persistent quick actions on phones, matching the desktop contact bar. */}
+      <nav
+        aria-label="Quick actions"
+        className="fixed inset-x-0 bottom-0 z-[60] grid grid-cols-5 gap-1 border-t border-slate-200 bg-white/95 px-1.5 pt-1.5 pb-[calc(0.375rem+env(safe-area-inset-bottom))] shadow-[0_-4px_16px_rgba(15,23,42,0.12)] backdrop-blur-md sm:hidden"
+      >
+        <button
+          type="button"
+          onClick={onRequestTowing}
+          aria-label="Request towing"
+          className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg bg-red-600 px-0.5 text-white active:bg-red-700"
+        >
+          <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-white" /><span className="text-[9px] font-black uppercase">Towing</span></span>
+        </button>
+        <a href={CONTACT_INFO.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open map" className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg border border-slate-300 bg-slate-50 text-slate-800 active:bg-slate-100">
+          <MapPin size={14} className="text-racing" /><span className="text-[9px] font-black uppercase">Map</span>
+        </a>
+        <a href="#book" onClick={(event) => handleNavClick(event, '#book')} aria-label="Book service" className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg bg-racing text-white active:bg-orange-600">
+          <Wrench size={14} /><span className="text-[9px] font-black uppercase">Book</span>
+        </a>
+        <a href={CONTACT_INFO.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg bg-[#25D366] text-white active:bg-[#20ba59]">
+          <MessageCircle size={14} /><span className="text-[9px] font-black uppercase">WhatsApp</span>
+        </a>
+        <a href={`tel:${CONTACT_INFO.phone}`} aria-label={`Call ${CONTACT_INFO.phone}`} className="flex min-h-10 min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg bg-slate-900 text-white active:bg-slate-800">
+          <PhoneCall size={14} /><span className="text-[9px] font-black uppercase">Call</span>
+        </a>
+      </nav>
+
       <div className="h-[116px] w-full shrink-0 sm:h-[112px] lg:h-[82px]" aria-hidden="true" />
     </>
   )

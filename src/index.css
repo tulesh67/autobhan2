@@ -26,6 +26,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@media (max-width: 639px) {
+  body {
+    padding-bottom: calc(3.75rem + env(safe-area-inset-bottom));
+  }
+}
+
 ::selection {
   background: #ff6a2b;
   color: #0a0d16;
