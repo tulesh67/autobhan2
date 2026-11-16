@@ -77,9 +77,9 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
             <img
               src={`${import.meta.env.BASE_URL}logo.png`}
               alt="Autobhan Cars Official Logo"
-              className="h-7 w-auto shrink-0 object-contain sm:h-12 lg:h-14"
+              className="h-9 w-auto shrink-0 object-contain sm:h-12 lg:h-14"
             />
-            <div className="flex min-w-0 flex-col">
+            <div className="hidden min-w-0 flex-col sm:flex">
               <span className="whitespace-nowrap font-display text-[9px] font-black uppercase tracking-tight text-slate-950 sm:text-xl lg:text-2xl">
                 {BRAND}
               </span>
@@ -93,13 +93,13 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
             {navigationLinks()}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-0.5 sm:gap-2">
+          <div className="flex min-w-0 flex-1 items-center justify-between gap-0.5 sm:flex-none sm:justify-normal sm:gap-2">
             <button
               type="button"
               onClick={onRequestTowing}
               aria-label="Request 24/7 towing"
               title="Request 24/7 Towing"
-              className="flex h-7 items-center justify-center gap-0.5 rounded-lg border border-red-600 bg-red-600 px-1 font-display text-[8px] font-black uppercase tracking-wide text-white shadow-sm transition hover:bg-red-700 active:scale-95 sm:h-10 sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3.5 sm:text-xs sm:tracking-wider"
+              className="flex h-8 min-w-0 flex-1 items-center justify-center gap-0.5 rounded-lg border border-red-600 bg-red-600 px-1 font-display text-[8px] font-black uppercase tracking-wide text-white shadow-sm transition hover:bg-red-700 active:scale-95 sm:h-10 sm:flex-none sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3.5 sm:text-xs sm:tracking-wider"
             >
               <span className="relative flex h-1.5 w-1.5 shrink-0 sm:h-2 sm:w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-80" />
@@ -115,7 +115,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
               rel="noopener noreferrer"
               title="View Autobhan Cars on Google Maps"
               aria-label="View map"
-              className="flex h-7 items-center justify-center gap-0.5 whitespace-nowrap rounded-lg border border-slate-300 bg-slate-50 px-1 font-display text-[8px] font-extrabold uppercase text-slate-800 hover:border-racing hover:text-racing sm:h-10 sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3 sm:text-xs sm:tracking-wider"
+              className="flex h-8 min-w-0 flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-lg border border-slate-300 bg-slate-50 px-1 font-display text-[8px] font-extrabold uppercase text-slate-800 hover:border-racing hover:text-racing sm:h-10 sm:flex-none sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3 sm:text-xs sm:tracking-wider"
             >
               <MapPin size={12} className="shrink-0 stroke-[2.5] text-racing sm:h-[14px] sm:w-[14px]" />
               <span>Map</span>
@@ -124,7 +124,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
             <a
               href="#book"
               onClick={(event) => handleNavClick(event, '#book')}
-              className="flex h-7 items-center justify-center gap-0.5 whitespace-nowrap rounded-lg border border-racing bg-racing px-1 font-display text-[8px] font-black uppercase tracking-wide text-white shadow-sm shadow-racing/30 transition hover:bg-orange-600 active:scale-95 sm:h-10 sm:gap-2 sm:rounded-xl sm:border-2 sm:px-4 sm:text-xs sm:tracking-wider"
+              className="flex h-8 min-w-0 flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-lg border border-racing bg-racing px-1 font-display text-[8px] font-black uppercase tracking-wide text-white shadow-sm shadow-racing/30 transition hover:bg-orange-600 active:scale-95 sm:h-10 sm:flex-none sm:gap-2 sm:rounded-xl sm:border-2 sm:px-4 sm:text-xs sm:tracking-wider"
             >
               <Wrench size={11} className="stroke-[2.5] sm:h-[13px] sm:w-[13px]" />
               <span>Book</span>
@@ -136,7 +136,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
               rel="noopener noreferrer"
               title="Chat on WhatsApp"
               aria-label="Chat on WhatsApp"
-              className="flex h-7 items-center justify-center gap-0.5 rounded-lg border border-[#20ba59] bg-[#25D366] px-1 text-white shadow-sm transition hover:bg-[#20ba59] active:scale-95 sm:h-10 sm:w-auto sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3.5"
+              className="flex h-8 min-w-0 flex-1 items-center justify-center gap-0.5 rounded-lg border border-[#20ba59] bg-[#25D366] px-1 text-white shadow-sm transition hover:bg-[#20ba59] active:scale-95 sm:h-10 sm:flex-none sm:w-auto sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3.5"
             >
               <MessageCircle size={12} className="shrink-0 fill-white/20 stroke-[2.5] text-white sm:h-[15px] sm:w-[15px]" />
               <span className="font-display text-[8px] font-black uppercase tracking-wide sm:hidden">WA</span>
@@ -147,7 +147,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
               href={`tel:${CONTACT_INFO.phone}`}
               aria-label={`Call ${CONTACT_INFO.phone}`}
               title={`Call: ${CONTACT_INFO.phone}`}
-              className="flex h-7 items-center justify-center gap-0.5 whitespace-nowrap rounded-lg border border-slate-900 bg-slate-900 px-1 font-display text-[8px] font-extrabold uppercase tracking-wide text-white shadow-sm transition hover:bg-slate-800 active:scale-95 sm:h-10 sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3 sm:text-xs sm:tracking-wider"
+              className="flex h-8 min-w-0 flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-lg border border-slate-900 bg-slate-900 px-1 font-display text-[8px] font-extrabold uppercase tracking-wide text-white shadow-sm transition hover:bg-slate-800 active:scale-95 sm:h-10 sm:flex-none sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3 sm:text-xs sm:tracking-wider"
             >
               <PhoneCall size={12} className="shrink-0 stroke-[2.5] text-white sm:h-[14px] sm:w-[14px]" />
               <span className="sm:hidden">Call</span>
