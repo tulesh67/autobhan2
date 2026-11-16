@@ -33,14 +33,14 @@ export function Why() {
 }
 
 const TILES = [
-  { image: 'fortuner.jpg', alt: 'Toyota Fortuner', cap: 'Toyota Fortuner', span: 'md:col-span-2 md:row-span-2' },
-  { image: 'thar-roxx.jpg', alt: 'Mahindra Thar Roxx', cap: 'Mahindra Thar Roxx', span: '' },
-  { image: 'xev-9e.jpg', alt: 'Mahindra XEV 9e electric SUV', cap: 'Electric SUV care', span: '' },
-  { image: 'harrier-ev.jpg', alt: 'Tata Harrier EV', cap: 'Tata Harrier EV', span: '' },
-  { image: 'scorpio-n.jpg', alt: 'Mahindra Scorpio N', cap: 'Mahindra Scorpio N', span: 'md:col-span-2' },
+  { image: 'gallery/workshop-bays.jpg', alt: 'Autobhan Cars Multi-Bay Workshop', cap: 'Multi-Bay Precision Workshop', tag: 'Facility', span: 'md:col-span-2 md:row-span-2' },
+  { image: 'gallery/team-genuine-parts.jpg', alt: 'Toyota Genuine Parts Specialist', cap: '100% Genuine OEM Parts', tag: 'Certified', span: '' },
+  { image: 'gallery/inventory-lounge.jpg', alt: 'Customer Lounge & Parts Inventory', cap: 'Dedicated Parts & Lounge', tag: 'Workshop', span: '' },
+  { image: 'cars/fortuner.jpg', alt: 'Toyota Fortuner Service', cap: 'Full-Size SUV Care', tag: 'Specialist', span: '' },
+  { image: 'cars/xev-9e.jpg', alt: 'Mahindra Electric SUV Care', cap: 'Next-Gen EV Diagnostics', tag: 'High Voltage', span: 'md:col-span-2' },
 ]
 
-function Tile({ image, alt, cap, span }: (typeof TILES)[number]) {
+function Tile({ image, alt, cap, tag, span }: (typeof TILES)[number]) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], [-24, 24])
@@ -48,7 +48,7 @@ function Tile({ image, alt, cap, span }: (typeof TILES)[number]) {
     <div ref={ref} className={`group relative min-h-[220px] overflow-hidden rounded-xl border border-slate-200 bg-slate-100 ${span}`}>
       <motion.div style={{ y }} className="absolute inset-0">
         <img
-          src={`${import.meta.env.BASE_URL}cars/${image}`}
+          src={`${import.meta.env.BASE_URL}${image}`}
           alt={alt}
           loading="lazy"
           decoding="async"
@@ -57,7 +57,7 @@ function Tile({ image, alt, cap, span }: (typeof TILES)[number]) {
       </motion.div>
       <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent p-5 pt-16 text-white">
         <span className="font-display text-lg uppercase tracking-widest">{cap}</span>
-        <span className="text-[10px] uppercase tracking-widest text-white/75">Showroom</span>
+        <span className="text-[10px] uppercase tracking-widest text-white/75">{tag || 'Garage'}</span>
       </div>
     </div>
   )
@@ -132,31 +132,41 @@ export function Reviews() {
 }
 
 const CONTACT = [
-  { Icon: MapPin, k: 'Address', v: '[GARAGE ADDRESS]' },
-  { Icon: Phone, k: 'Phone', v: '[PHONE NUMBER]' },
-  { Icon: Mail, k: 'Email', v: '[EMAIL ADDRESS]' },
-  { Icon: Clock, k: 'Hours', v: '[WORKING HOURS]' },
+  { Icon: MapPin, k: 'Location', v: 'Hyderabad, Telangana, India', href: 'https://maps.google.com/?q=Hyderabad' },
+  { Icon: Phone, k: 'Call Helpline', v: '+91 92461 55784 / +91 60081 047939', href: 'tel:+919246155784' },
+  { Icon: Mail, k: 'Email Inquiries', v: 'service@autobhancars.com', href: 'mailto:service@autobhancars.com' },
+  { Icon: Clock, k: 'Working Hours', v: 'Mon – Sat: 9:00 AM – 8:00 PM (Sun Closed)', href: undefined },
 ]
 
 export function Contact() {
   return (
     <section id="contact" className="section">
-      <SectionHead kicker="Contact" title={<>Visit the <span className="text-racing">garage</span></>} sub="Contact details below are placeholders. Replace them with your real business information." />
+      <SectionHead kicker="Contact & Location" title={<>Visit the <span className="text-racing">garage</span></>} sub="Call, email, or visit our multi-brand workshop in Hyderabad for precision service and diagnostics." />
       <div className="grid gap-6 md:grid-cols-2">
         <div className="grid gap-4 sm:grid-cols-2">
-          {CONTACT.map(({ Icon, k, v }) => (
+          {CONTACT.map(({ Icon, k, v, href }) => (
             <Reveal key={k}>
               <div className="glass h-full p-6">
                 <Icon size={24} className="text-racing" />
                 <p className="mt-4 font-display text-xs uppercase tracking-[0.25em] text-slate-500">{k}</p>
-                <p className="mt-1 font-medium">{v}</p>
+                {href ? (
+                  <a href={href} className="mt-1 block font-medium text-slate-900 transition hover:text-racing">{v}</a>
+                ) : (
+                  <p className="mt-1 font-medium text-slate-900">{v}</p>
+                )}
               </div>
             </Reveal>
           ))}
         </div>
         <Reveal>
-          <div className="grid-bg relative grid min-h-[280px] place-items-center rounded-xl border border-slate-200 bg-white text-center">
-            <div><MapPin size={36} className="mx-auto text-racing" /><p className="mt-3 font-display text-xl uppercase tracking-widest">Map placeholder</p><p className="text-sm text-slate-500">Embed your map here</p></div>
+          <div className="grid-bg relative flex min-h-[280px] flex-col items-center justify-center rounded-xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Autobhan Logo" className="mx-auto mb-4 h-16 w-auto object-contain" />
+            <h4 className="font-display text-2xl font-bold uppercase tracking-wider text-slate-900">Autobhan Cars</h4>
+            <p className="mt-1 text-sm text-slate-600">Multi-Brand Workshop & Diagnostics • Hyderabad</p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <a href="tel:+919246155784" className="btn-primary !min-h-[40px] !px-4 text-xs">Call +91 92461 55784</a>
+              <a href="https://wa.me/919246155784" target="_blank" rel="noopener noreferrer" className="btn-ghost !min-h-[40px] !px-4 text-xs !text-slate-800 hover:!text-racing">WhatsApp Us</a>
+            </div>
           </div>
         </Reveal>
       </div>
@@ -168,11 +178,14 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-white">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-5 py-10 text-sm text-slate-500 sm:px-8 md:flex-row">
-        <a href="#top" className="font-display text-xl font-bold tracking-[0.12em] text-slate-900">{BRAND}</a>
+        <a href="#top" className="flex items-center gap-2 font-display text-xl font-bold tracking-[0.12em] text-slate-900">
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Autobhan Cars" className="h-8 w-auto object-contain" />
+          <span>{BRAND}</span>
+        </a>
         <nav aria-label="Footer" className="flex flex-wrap justify-center gap-6">
-          {[['Showroom', '#showroom'], ['Services', '#services'], ['Book', '#book'], ['Contact', '#contact']].map(([l, h]) => <a key={h} href={h} className="hover:text-racing">{l}</a>)}
+          {[['Showroom', '#showroom'], ['Services', '#services'], ['Gallery', '#gallery'], ['Book', '#book'], ['Contact', '#contact']].map(([l, h]) => <a key={h} href={h} className="hover:text-racing">{l}</a>)}
         </nav>
-        <p>© {new Date().getFullYear()} {BRAND}. Demo website.</p>
+        <p>© {new Date().getFullYear()} {BRAND}. All rights reserved.</p>
       </div>
     </footer>
   )

@@ -3,11 +3,11 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
 import { BODY_PATH, GLASS_PATH, WHEELS } from './Suv'
 import { SectionHead } from './Reveal'
-import { HOTSPOTS } from '../data'
+import { HOTSPOTS, type Hotspot } from '../data'
 
 export default function Engineering({ onBook }: { onBook: (p: { service: string }) => void }) {
   const [id, setId] = useState('engine')
-  const h = HOTSPOTS.find((x) => x.id === id)!
+  const h = HOTSPOTS.find((x: Hotspot) => x.id === id)!
 
   return (
     <section id="engineering" className="section">
@@ -32,7 +32,7 @@ export default function Engineering({ onBook }: { onBook: (p: { service: string 
               </g>
               <text x="60" y="320" fill="#64748b" fillOpacity=".7" stroke="none" fontSize="11" letterSpacing="3">SCHEMATIC / NOT TO SCALE</text>
             </svg>
-            {HOTSPOTS.map((p) => (
+            {HOTSPOTS.map((p: Hotspot) => (
               <button
                 key={p.id}
                 onClick={() => setId(p.id)}
@@ -47,7 +47,7 @@ export default function Engineering({ onBook }: { onBook: (p: { service: string 
             ))}
           </div>
           <div className="relative mt-6 flex flex-wrap gap-2">
-            {HOTSPOTS.map((p) => (
+            {HOTSPOTS.map((p: Hotspot) => (
               <button
                 key={p.id}
                 onClick={() => setId(p.id)}
@@ -73,7 +73,7 @@ export default function Engineering({ onBook }: { onBook: (p: { service: string 
               <h3 className="mt-5 font-display text-4xl font-bold uppercase">{h.label}</h3>
               <p className="mt-3 text-slate-600">{h.text}</p>
               <ul className="mt-5 space-y-2">
-                {h.checks.map((c, i) => (
+                {h.checks.map((c: string, i: number) => (
                   <motion.li key={c} initial={{ opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 + i * 0.08 }} className="flex items-center gap-2 text-sm">
                     <Check size={16} className="text-racing" /> {c}
                   </motion.li>

@@ -10,10 +10,9 @@ npm run build    # type-check + production build
 
 ## Deploy to GitHub Pages
 
-Pushing to `main` builds the site and deploys it to GitHub Pages. The Vite
-base path is set by the workflow for the `autobhan2` repository. The published
-site is available at <https://tulesh67.github.io/autobhan2/> after the first
-successful deployment.
+Pushing to `main` builds the site and deploys it to GitHub Pages. The custom
+domain `autobhancars.com` is configured via `public/CNAME`. The published site
+is available at <https://autobhancars.com/>.
 
 ## Replace before launch
 - `src/data.ts`: update the `BRAND` name if needed (currently "AUTOBHAN").

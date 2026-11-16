@@ -32,7 +32,7 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          VITE_BASE_PATH: /autobhan2/
+          VITE_BASE_PATH: /
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

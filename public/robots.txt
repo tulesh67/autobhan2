@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://autobhancars.com/sitemap.xml
+
