@@ -5,12 +5,19 @@ import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react'
 type GalleryItem = {
   id: string
   title: string
-  category: 'Facility' | 'Parts' | 'Vehicles'
+  category: 'Facility' | 'Parts' | 'Vehicles' | 'Team'
   src: string
   caption: string
 }
 
 const GALLERY_ITEMS: GalleryItem[] = [
+  {
+    id: 'g-team',
+    title: 'The AutoBhan Team',
+    category: 'Team',
+    src: 'gallery/our-team.jpg',
+    caption: 'Meet the technicians and service advisors behind AutoBhan Cars at our Hyderabad workshop.',
+  },
   {
     id: 'g1',
     title: 'Multi-Bay Precision Workshop',
@@ -77,7 +84,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
 ]
 
 export default function Gallery() {
-  const [filter, setFilter] = useState<'ALL' | 'Facility' | 'Parts' | 'Vehicles'>('ALL')
+  const [filter, setFilter] = useState<'ALL' | 'Facility' | 'Parts' | 'Vehicles' | 'Team'>('ALL')
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null)
 
   const filtered = filter === 'ALL'
@@ -114,10 +121,10 @@ export default function Gallery() {
               Visual Documentation
             </span>
             <h2 className="mt-2 font-display text-4xl font-extrabold uppercase tracking-tight text-slate-900 sm:text-5xl">
-              Facility &amp; Car <span className="text-racing">Gallery</span>
+              Facility, Team &amp; Car <span className="text-racing">Gallery</span>
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base leading-relaxed">
-              Take an inside look at our active Hyderabad workshop bays, verified genuine parts inventories, customer lounge, and featured vehicles.
+              Meet the AutoBhan team and explore our Hyderabad workshop, genuine parts, and featured vehicles.
             </p>
 
             {/* Mobile Swipe Hint */}
@@ -128,7 +135,7 @@ export default function Gallery() {
 
           {/* Filter Pills */}
           <div className="flex flex-wrap gap-2">
-            {(['ALL', 'Facility', 'Parts', 'Vehicles'] as const).map((cat) => (
+            {(['ALL', 'Facility', 'Parts', 'Vehicles', 'Team'] as const).map((cat) => (
               <button
                 key={cat}
                 type="button"
