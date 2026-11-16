@@ -28,7 +28,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
       const element = document.getElementById(targetId)
       if (!element) return
 
-      const headerOffset = window.innerWidth < 640 ? 92 : window.innerWidth < 1024 ? 116 : 85
+      const headerOffset = window.innerWidth < 640 ? 96 : window.innerWidth < 1024 ? 116 : 85
       const offsetPosition =
         element.getBoundingClientRect().top + window.pageYOffset - headerOffset
 
@@ -51,7 +51,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
         onClick={(event) => handleNavClick(event, link.href)}
         className={
           compact
-            ? 'flex min-h-8 items-center justify-center whitespace-nowrap rounded-md px-0.5 font-display text-[8px] font-extrabold uppercase tracking-tight text-slate-800 transition hover:bg-slate-100 hover:text-racing active:bg-slate-100 sm:min-h-9 sm:px-3 sm:text-xs'
+            ? 'flex min-h-9 items-center justify-center whitespace-nowrap rounded-md px-0.5 font-display text-[10px] font-extrabold uppercase tracking-tight text-slate-800 transition hover:bg-slate-100 hover:text-racing active:bg-slate-100 sm:min-h-9 sm:px-3 sm:text-xs'
             : 'relative whitespace-nowrap py-1 font-display text-sm font-extrabold uppercase tracking-wider text-slate-800 transition hover:text-racing xl:text-[15px]'
         }
       >
@@ -165,7 +165,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
 
       </header>
 
-      <div className="h-[92px] w-full shrink-0 sm:h-[112px] lg:h-[82px]" aria-hidden="true" />
+      <div className="h-[96px] w-full shrink-0 sm:h-[112px] lg:h-[82px]" aria-hidden="true" />
     </>
   )
 }
