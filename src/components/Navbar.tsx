@@ -79,8 +79,8 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
               alt="Autobhan Cars Official Logo"
               className="h-9 w-auto shrink-0 object-contain sm:h-12 lg:h-14"
             />
-            <div className="hidden min-w-0 flex-col sm:flex">
-              <span className="whitespace-nowrap font-display text-[9px] font-black uppercase tracking-tight text-slate-950 sm:text-xl lg:text-2xl">
+            <div className="flex min-w-0 flex-col">
+              <span className="whitespace-nowrap font-display text-[8px] font-black uppercase tracking-tight text-slate-950 sm:text-xl lg:text-2xl">
                 {BRAND}
               </span>
               <span className="hidden text-[9.5px] font-bold uppercase tracking-[0.14em] text-slate-400 sm:block lg:text-[11px]">
@@ -106,7 +106,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white sm:h-2 sm:w-2" />
               </span>
               <span className="hidden sm:inline">Towing</span>
-              <span className="sm:hidden">Tow</span>
+              <span className="max-[380px]:hidden sm:hidden">Tow</span>
             </button>
 
             <a
@@ -118,7 +118,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
               className="flex h-8 min-w-0 flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-lg border border-slate-300 bg-slate-50 px-1 font-display text-[8px] font-extrabold uppercase text-slate-800 hover:border-racing hover:text-racing sm:h-10 sm:flex-none sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3 sm:text-xs sm:tracking-wider"
             >
               <MapPin size={12} className="shrink-0 stroke-[2.5] text-racing sm:h-[14px] sm:w-[14px]" />
-              <span>Map</span>
+              <span className="max-[380px]:hidden">Map</span>
             </a>
 
             <a
@@ -127,7 +127,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
               className="flex h-8 min-w-0 flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-lg border border-racing bg-racing px-1 font-display text-[8px] font-black uppercase tracking-wide text-white shadow-sm shadow-racing/30 transition hover:bg-orange-600 active:scale-95 sm:h-10 sm:flex-none sm:gap-2 sm:rounded-xl sm:border-2 sm:px-4 sm:text-xs sm:tracking-wider"
             >
               <Wrench size={11} className="stroke-[2.5] sm:h-[13px] sm:w-[13px]" />
-              <span>Book</span>
+              <span className="max-[380px]:hidden">Book</span>
             </a>
 
             <a
@@ -139,7 +139,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
               className="flex h-8 min-w-0 flex-1 items-center justify-center gap-0.5 rounded-lg border border-[#20ba59] bg-[#25D366] px-1 text-white shadow-sm transition hover:bg-[#20ba59] active:scale-95 sm:h-10 sm:flex-none sm:w-auto sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3.5"
             >
               <MessageCircle size={12} className="shrink-0 fill-white/20 stroke-[2.5] text-white sm:h-[15px] sm:w-[15px]" />
-              <span className="font-display text-[8px] font-black uppercase tracking-wide sm:hidden">WA</span>
+              <span className="max-[380px]:hidden font-display text-[8px] font-black uppercase tracking-wide sm:hidden">WA</span>
               <span className="hidden font-display text-xs font-black uppercase tracking-wider sm:inline">WhatsApp</span>
             </a>
 
@@ -150,7 +150,7 @@ export default function Navbar({ onRequestTowing }: NavbarProps) {
               className="flex h-8 min-w-0 flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-lg border border-slate-900 bg-slate-900 px-1 font-display text-[8px] font-extrabold uppercase tracking-wide text-white shadow-sm transition hover:bg-slate-800 active:scale-95 sm:h-10 sm:flex-none sm:gap-2 sm:rounded-xl sm:border-2 sm:px-3 sm:text-xs sm:tracking-wider"
             >
               <PhoneCall size={12} className="shrink-0 stroke-[2.5] text-white sm:h-[14px] sm:w-[14px]" />
-              <span className="sm:hidden">Call</span>
+              <span className="max-[380px]:hidden sm:hidden">Call</span>
               <span className="hidden font-mono font-bold 2xl:inline">{CONTACT_INFO.phone}</span>
             </a>
           </div>
